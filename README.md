@@ -1,4 +1,35 @@
-# AndromedaUilities
+# RFEUtilities
+
+## Short description
+
+### Intended purpose
+
+- Creating a more advanced way to work with in-game structures and functions
+- Speeding up scripts by making it possible to write code without using the slow in-game language.
+
+### Description of directory and file structure
+
+#### Directories
+
+- **build** - where the library is built.
+- **includes** - stores various header files that can be used universally
+- **helpers** - stores various modules needed for other files in source modules, modules here may not be used by the game
+- **source** - stores various modules that should be used only for working with the game and game structures
+- **modules** - stores various modules that can be used by the game or modules in source
+- **tests** - stores test implementation modules, the test module itself is stored in **modules**
+- **tasks** - keeps track of completed and planned tasks for the library as a whole.
+- **\exports** - stores the realization of exporting those methods of modules that should be exported from the library, you can describe them in any way you want, the main thing is to connect the cpp file in **main.cpp**(or if it is a test library, in **test.cpp**).
+- ***\inc** - stores header files of individual modules
+- ***\src** - stores the code of individual modules
+- ***\tasks** - keeps track of completed and planned tasks for modules.
+
+#### Files
+
+- **LICENSE** - license file
+- **.gitignore** - file for git version control system
+- **main.cpp** - Main start file
+- **test.cpp** - Main start file for test modules
+- **CMakeLists.txt** - build file
 
 ## Короткое описание
 
