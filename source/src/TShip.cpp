@@ -186,7 +186,16 @@ namespace TShipM
 
         return true;
     }
-
+    int ShipSubrace(
+        TShip* ship
+    )
+    {
+        if (TShipM::ShipTypeN(ship) != t_Kling)
+        {
+            return -1;
+        }
+        return ((TKling*)ship)->sub_race;
+    }
     int ShipSubrace(
         TShip* ship,
         int sub_race
@@ -210,7 +219,7 @@ namespace TShipM
         int obj_type = TObjectM::ObjectType(ship);
         if (obj_type != t_ObjShip && obj_type != t_ObjStation)
         {
-            Logger::SFT(L"RFEUtilities.dll ShipJoinToScript function error. First argument is not a ship or station.");
+            Logger::WriteMessageError(L"ShipJoinToScript function error. First argument is not a ship or station.");
             throw;
         }
 
@@ -219,14 +228,14 @@ namespace TShipM
         TScript* script = TScriptM::GetScriptByName(_wcsdup(String::GetParSepStr(path, sep, 0)));
         if (!script)
         {
-            Logger::SFT(L"RFEUtilities.dll Warning! ShipJoinToScript cannot find script by it's name. Path is: " + *path);
+            Logger::WriteMessageWarning(L"ShipJoinToScript cannot find script by it's name. Path is: " + *path);
             return;
         }
 
         TScriptGroup* group = TScriptM::GetScriptGroupByName(script, _wcsdup(String::GetParSepStr(path, sep, 1)));
         if (!group)
         {
-            Logger::SFT(L"RFEUtilities.dll Warning! ShipJoinToScript cannot find script group by it's name. Path is: " + *path);
+            Logger::WriteMessageWarning(L"ShipJoinToScript cannot find script group by it's name. Path is: " + *path);
             return;
         }
 
@@ -238,7 +247,7 @@ namespace TShipM
             if (!state)
             {       
                 state = TScriptM::GetScriptStateByNum(script, TScriptM::GetScriptGroupBaseState(group));
-                Logger::SFT(L"RFEUtilities.dll Warning! ShipJoinToScript cannot find script state by it's name. Ship will be added in base group state. Path is: " + *path);
+                Logger::WriteMessageWarning(L"RFEUtilities.dll Warning! ShipJoinToScript cannot find script state by it's name. Ship will be added in base group state. Path is: " + *path);
             }
         }      
         else state = TScriptM::GetScriptStateByNum(script, TScriptM::GetScriptGroupBaseState(group));

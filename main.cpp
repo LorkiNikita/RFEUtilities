@@ -1,7 +1,6 @@
 #pragma once
 #include "main.h"
 
-
 using namespace std;
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
@@ -17,7 +16,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
         Path::InitUserDocumentsPath();
         Path::InitLogPath();
 
-        Logger::SFT(L"RFEUtilities(version 0.0.1) has been successfully added to the game");
+        Logger::WriteMessage(L"main library has been successfully added to the game");
         break;
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
@@ -26,7 +25,6 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     }
     return TRUE;
 }
-
 
 DLLEXPORT
 void InitUtils(TGalaxy* galaxy)
