@@ -1,7 +1,23 @@
 #pragma once
+#include "../../helpers/inc/exports.h"
 #include "VMT.h"
 
-struct TItem {
+namespace TItemM
+{
+    byte ItemType(TItem* item);
+    DLLEXPORT
+    const wchar_t* ItemOwnerString(TItem* item);
+    wstring ItemCustomFaction(TItem* item);
+}
+
+namespace TEquipmentM
+{
+    TEquipment* AsEquipment(TItem* item);
+    bool IsEquipment(TItem* item);
+}
+
+struct TItem 
+{
     VMT cls;
 
     UNK _04; // появляется в космосе
@@ -48,8 +64,6 @@ struct TGoods: TItem {
 struct TEquipment: TItem {
     WSTR sys_name;
     WSTR custom_faction;
-
-#if SR_EXE_VERSION > 0
     double duration;
     bool broken;
     bool explotable;
@@ -66,30 +80,7 @@ struct TEquipment: TItem {
                                 ///< улучшения оно всё равно реролится кодом
     _gap _empty3;
     _gap _empty4;
-
-#else
-    bool explotable;
-    _gap _41[7];
-    double duration;
-    bool broken;
-    bool is_used;
-    _gap _51[2];
-    int equip_slot_num;
-    int bonus;
-    int special;
-    int* weapon_info;
-    _gap _64;
-    _gap _65;
-    _gap _66;
-    _gap _67;
-    _gap _68;
-    _gap _69;
-    _gap _6A;
-    _gap _6B;
-
-#endif
 };
-
 struct THull: TEquipment {
     int hitpoints;
     byte tech_level;

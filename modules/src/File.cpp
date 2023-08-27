@@ -36,7 +36,7 @@ namespace File {
                 {
                     cur_line = cur_line.substr(sep + 1);
                     check = 1;
-                    //   ,      
+                    
                     return ((wchar_t*)&cur_line);
                 }
             } 
@@ -53,12 +53,11 @@ namespace File {
     {
         wstring cur_line;
         wstring path = Path::system_folder + txt_path;
-        // 
+
         wifstream file(path, ios::in);
-        //  txt-   
+
         if (file)
         {
-            //   ,      
             int check = 0;
             while (getline(file, cur_line))
             {
@@ -67,17 +66,17 @@ namespace File {
                 {
                     cur_line = cur_line.substr(sep + 1);
                     check = 1;
-                    //   ,      
+   
                     return (cur_line);
                 }
             }
 
-            //      ,   
+
             if (!check) return (L"");
-            // 
+
             file.close();
         }
-        // 
+
         else return 0;
     }
 
@@ -95,47 +94,44 @@ namespace File {
         wifstream file(path, ios::in);
         wstring old_value = L"";
 
-        //  txt-   
         if (file)
-        {
-            //   ,       
+        { 
             int check = 0;
             while (getline(file, cur_line))
             {
                 int sep = cur_line.find(L"=");
-                //  ,      ,         
+
                 if (cur_line.substr(0, sep) == param_name)
                 {
-                    //       
                     old_value = cur_line.substr(sep + 1);
 
                     if (add_line != L"") add_line += L"\n";
                     add_line += *param_name + L"=" + *value;
                     check = 1;
                 }
-                //        
+                
                 else
                 {
                     if (add_line != L"") add_line += L"\n";
                     add_line += cur_line;
                 }
             }
-            //      ,      
+   
             if (!check)
             {
                 if (add_line != L"") add_line += L"\n";
                 add_line += *param_name + L"=" + *value;
             }
-            // 
+
             file.close();
         }
-        //    ,      txt    
+  
         else add_line = *param_name + L"=" + *value;
-        // /  
+
         wofstream file_add(path, ios::out);
-        //        txt
+
         file_add << add_line;
-        // ,    
+ 
         file_add.close();
 
         if (old_value != L"") return ((wchar_t*)&old_value);

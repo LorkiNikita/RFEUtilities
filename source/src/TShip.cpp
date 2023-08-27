@@ -22,6 +22,70 @@ static vector <shipNearby> ShipsNearby;
 
 namespace TShipM 
 {
+    DLLEXPORT
+    const wchar_t* ShipOwnerString(TShip* ship)
+    {
+        wstring customFaction = TShipM::ShipCustomFaction(ship);
+        if(customFaction != L"")
+        {
+            return customFaction.c_str();
+        }
+
+        byte owner = ship->owner;
+        byte race = ship->pilot_race;
+        switch (ship->owner)
+        {
+            case Kling:
+                switch (TShipM::ShipSubrace(ship))
+                {
+                    case 0:
+                        return L"Blazer";
+                    case 1:
+                        return L"Keller";
+                    case 2:
+                        return L"Terron";
+                    default:
+                        return L"Empty";
+                }
+                return L"Empty";
+            case None:
+                return L"None";
+            case PirateClan:
+                switch (race)
+                {
+                    case Maloc:
+                        return L"PirateMaloc";
+                    case Peleng:
+                        return L"PiratePeleng";
+                    case People:
+                        return L"PiratePeople";
+                    case Fei:
+                        return L"PirateFei";
+                    case Gaal:
+                        return L"PirateGaal";
+                    default:
+                        return L"Empty";
+                }
+                return L"Empty";
+            default:
+                switch (race)
+                {
+                    case Maloc:
+                        return L"Maloc";
+                    case Peleng:
+                        return L"Peleng";
+                    case People:
+                        return L"People";
+                    case Fei:
+                        return L"Fei";
+                    case Gaal:
+                        return L"Gaal";
+                    default:
+                        return L"Empty";
+                }
+                return L"Empty";
+        }
+    }
     static wstring ShipType(TShip* ship)
     {
         wchar_t* type = ship->custom_type_name;
@@ -72,8 +136,7 @@ namespace TShipM
             case(t_CB):
                 return L"CB";
             case(t_UB):
-                Logger::SFT(L"RFEUtilities.dll    ShipType -    t_UB.");
-                Logger::SFT(L"RFEUtilities.dll ShipType function error - Wrong ruin t_UB ShipType determination.");
+                Logger::WriteMessageError(L"ShipType Wrong ruin t_UB ShipType determination.");
                 throw;
             }
         }
@@ -247,7 +310,7 @@ namespace TShipM
             if (!state)
             {       
                 state = TScriptM::GetScriptStateByNum(script, TScriptM::GetScriptGroupBaseState(group));
-                Logger::WriteMessageWarning(L"RFEUtilities.dll Warning! ShipJoinToScript cannot find script state by it's name. Ship will be added in base group state. Path is: " + *path);
+                Logger::WriteMessageWarning(L"ShipJoinToScript cannot find script state by it's name. Ship will be added in base group state. Path is: " + *path);
             }
         }      
         else state = TScriptM::GetScriptStateByNum(script, TScriptM::GetScriptGroupBaseState(group));
@@ -271,7 +334,7 @@ namespace TShipM
       
                     if (i == ship_script_objs_list->count - 1)
                     {
-                        Logger::SFT(L"RFEUtilities.dll ShipJoinToScript Warning! Can't find ship script object in it's script. Path is: " + *path);
+                        Logger::WriteMessageWarning(L"ShipJoinToScript Can't find ship script object in it's script. Path is: " + *path);
                         return;
                     }
                 }
@@ -280,7 +343,7 @@ namespace TShipM
             { 
                 if (group == TScriptM::GetScriptGroupByNum(script, ship_script_obj->group) && state == ship_script_obj->state)
                 {
-                    Logger::SFT(L"RFEUtilities.dll ShipJoinToScript Warning! This ship is already in target script group and target script state. Path is: " + *path);
+                    Logger::WriteMessageWarning(L"ShipJoinToScript This ship is already in target script group and target script state. Path is: " + *path);
                     return;
                 }
             }

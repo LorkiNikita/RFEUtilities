@@ -1,10 +1,14 @@
 #pragma once
 #include <vector>
+#include "../../helpers/inc/exports.h"
 #include "VMT.h"
 
 
 namespace TShipM 
 {
+    DLLEXPORT
+    const wchar_t* ShipOwnerString(TShip* ship);
+
     wstring ShipType(TShip* ship);
   
     void ShipType(TShip* ship,wchar_t* type);
@@ -24,6 +28,7 @@ namespace TShipM
     int ShipCoordY(TShip* ship);
     int DistShips(TShip* ship1, TShip* ship2);
     bool IsSpecialAgent(TShip* ship);
+    int ShipSubrace(TShip* ship);
     int ShipSubrace(TShip* ship, int sub_race);
     void ShipJoinScript(TShip* ship, wchar_t* path);
 };
@@ -31,9 +36,9 @@ namespace TShipM
 struct TShipIliness {
     unkint32 _00;
     unkint32 _04;
-    int immunity; //Связано как то с вирусным периодом
+    int immunity; 
     unkint32 _B0; //Тоже как-то связано как то с вирусным периодом
-    int turn; //Указывается он тут через одно место для установки нужно прибавить +308 TODO:(проверить зависимость от параметров)
+    int turn; //Для установки нужно прибавить +308
     
     unkint32 _12;
 
@@ -79,7 +84,7 @@ struct TShip {
     _gap _076;
     _gap _077;
 
-    unkint8 isplayer; // Возможно это маркер на то что игрок ли это
+    unkint8 is_player; // Возможно это маркер на то что игрок ли это
     _gap _079;
     _gap _07A;
     _gap _07B;
@@ -89,9 +94,9 @@ struct TShip {
     int rnd_seed;
 
     int turncreate; //Ход рождения корабля
-    int curturn; //Да идиотство сам в афиге,т.е тут не кол-во дней с момента создания а именно блин текущий ход а дни жизни считай сам,если корабль вот вот создан тут 0xffffffff
+    int curturn; //Да именно текущий ход, а не кол-во дней с создания
 
-    int money; //Деньги и кстати с ними есть прикол у боссов всегда 100 миллионов хз зачем
+    int money; //Деньги
 
 
     _gap _094;

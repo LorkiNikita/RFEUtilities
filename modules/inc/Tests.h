@@ -9,8 +9,6 @@ namespace Tests {
 
     DLLEXPORT
     void TimeTestsStartTest(wchar_t* testname);
-    uint64_t TimeTestsEndTestNum(wchar_t* testname);
-    std::wstring TimeTestsEndTestString(wchar_t* testname);
     DLLEXPORT
-    const wchar_t* TimeTestsEndTest(wchar_t* testname);
+    uint64_t TimeTestsEndTest(wchar_t* testname);
 };

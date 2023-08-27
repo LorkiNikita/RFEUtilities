@@ -1,7 +1,9 @@
 #pragma once
+#include "../../helpers/inc/exports.h"
 #include "VMT.h"
 
-struct TPlanetNews {
+struct TPlanetNews 
+{
     int _00;
     int date;
     byte type;
@@ -11,7 +13,8 @@ struct TPlanetNews {
     STR text;
 };
 
-struct TPlanetTempl {
+struct TPlanetTempl 
+{
     VMT cls;
     int type;
     STR mask_0;
@@ -21,7 +24,13 @@ struct TPlanetTempl {
     int _14;
 };
 
-struct TPlanet {
+namespace TPlanetM 
+{
+    DLLEXPORT
+    const wchar_t* PlanetOwnerString(TPlanet* planet);
+}
+struct TPlanet 
+{
     VMT cls;
 
     uint32_t id;
@@ -63,7 +72,7 @@ struct TPlanet {
     _gap _072;
     _gap _073;
     byte owner;
-    bool _075;
+    byte owner_faction; // 1 - coals
     byte race;
     byte gov;
     TGoodsShopItem goods[8];
@@ -73,10 +82,12 @@ struct TPlanet {
     _gap _101;
     _gap _102;
     _gap _103;
+
     _gap _104;
     _gap _105;
     _gap _106;
     _gap _107;
+
     _gap _108;
     _gap _109;
     _gap _10A;
@@ -85,22 +96,8 @@ struct TPlanet {
     TList* equipment_store_items;
     TList* warriors;
     int spawned_rangers_count;
-    _gap _11C;
-    _gap _11D;
-    _gap _11E;
-    _gap _11F;
-    _gap _120;
-    _gap _121;
-    _gap _122;
-    _gap _123;
-    _gap _124;
-    _gap _125;
-    _gap _126;
-    _gap _127;
-    _gap _128;
-    _gap _129;
-    _gap _12A;
-    _gap _12B;
+    int spawned_transports_count;
+
     int water_total;
     int water_researched;
     int land_total;
@@ -110,6 +107,7 @@ struct TPlanet {
     byte orbit_cnt;
     bool is_visited;
     _gap _143[2];
+    
     TList* gone_items;
     int graph_raduis;
     TObjectSE* graph_planet;
@@ -120,12 +118,21 @@ struct TPlanet {
     _gap _161;
     _gap _162;
     _gap _163;
+
     _gap _164;
     _gap _165;
     _gap _166;
     _gap _167;
+
     byte no_landing;
     byte no_shop_update;
     bool is_rogeria;
     _gap _16B;
+
+    _gap _16C;
+    _gap _16D;
+    _gap _16E;
+    _gap _16F;
+
+    WSTR custom_faction;
 };

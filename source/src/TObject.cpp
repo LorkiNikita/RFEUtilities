@@ -44,105 +44,26 @@ namespace TObjectM {
         int objType = TObjectM::ObjectType(obj);
         wstring customFaction;
         byte owner;
+        byte type;
         byte race;
+        TShip* ship;
+        TItem* item;
+        TPlanet* planet;
         switch (objType)
         {
             case t_ObjShip:
-                TShip* ship = ((TShip*)obj);
-                
-                customFaction = TShipM::ShipCustomFaction(ship);
-                if(customFaction != L"")
-                {
-                    return customFaction.c_str();
-                    break;
-                }
-
-                owner = ship->owner;
-                race = ship->pilot_race;
-                switch (ship->owner)
-                {
-                    case Kling:
-                        switch (TShipM::ShipSubrace(ship))
-                        {
-                            case 0:
-                                return L"Blazer";
-                                break;
-                            case 1:
-                                return L"Keller";
-                                break;
-                            case 2:
-                                return L"Terron";
-                                break;
-                            default:
-                                break;
-                        }
-                        
-                        /* code */
-                        break;
-                    case None:
-                        return L"None";
-                        break;
-                    case PirateClan:
-                        switch (race)
-                        {
-                            case Maloc:
-                                
-                                break;
-                            case Peleng:
-                                
-                                break;
-                            case People:
-                                
-                                break;
-                            case Fei:
-                                
-                                break;
-                            case Gaal:
-                                
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    default:
-                        switch (race)
-                        {
-                            case Maloc:
-                                
-                                break;
-                            case Peleng:
-                                
-                                break;
-                            case People:
-                                
-                                break;
-                            case Fei:
-                                
-                                break;
-                            case Gaal:
-                                
-                                break;
-                            default:
-                                break;
-                        }
-                        return L"None";
-                }
-
-                break;
+                ship = ((TShip*)obj);
+                return TShipM::ShipOwnerString(ship);
             case t_ObjItem:
-                TItem* item = ((TItem*)obj);
-                
-
-                break;
+                item = ((TItem*)obj);
+                return TItemM::ItemOwnerString(item);
             case t_ObjPlanet:
-                TPlanet* planet = ((TPlanet*)obj);
-
-                return L"None";
-                break;
+                planet = ((TPlanet*)obj);
+                return TPlanetM::PlanetOwnerString(planet);
             default:
                 Logger::WriteMessageError(L"Object haven't owner param");
-                return L"None";
-                break;
+
+                return L"Empty";
         }
         return L"None";
     }

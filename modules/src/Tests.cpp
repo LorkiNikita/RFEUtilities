@@ -3,33 +3,24 @@
 
 using namespace std;
 
-namespace Tests {
+namespace Tests 
+{
     DLLEXPORT
     void TimeTestsStartTest(wchar_t* testname)
     {
         timetesttemp[*testname] = DateTime::TimestampMillisecond();
     }
 
-    uint64_t TimeTestsEndTestNum(wchar_t* testname)
+    DLLEXPORT
+    uint64_t TimeTestsEndTest(wchar_t* testname)
     {
-        return DateTime::TimestampMillisecond()-timetesttemp[*testname];
-    }
-
-    wstring TimeTestsEndTestString(wchar_t* testname)
-    {
-        if (timetesttemp.find(*testname) == timetesttemp.end()) {
-            Logger::SFT(L"AndromedaUtilities.dll Error! Not find test named " + wstring(testname));
-            return L"Test Failed";
+        if (timetesttemp.find(*testname) == timetesttemp.end()) 
+        {
+            Logger::WriteMessageError(L"Not find test named " + wstring(testname));
+            return 0;
         }
 
-        double msec = TimeTestsEndTestNum(testname);
-        wstring ret = L"AndromedaUtilities.dll Test " + wstring(testname) + L" completed after " + to_wstring(int(msec)) + L" msec - " + to_wstring(msec / 1000) + L" sec";
         timetesttemp.erase(*testname);
-        return ret;
-    }
-    DLLEXPORT
-    const wchar_t* TimeTestsEndTest(wchar_t* testname)
-    {
-        return TimeTestsEndTestString(testname).c_str();
+        return DateTime::TimestampMillisecond()-timetesttemp[*testname];
     }
 };
