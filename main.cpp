@@ -27,7 +27,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 }
 
 DLLEXPORT
-void InitUtils(TGalaxy* galaxy)
+void RFEUtilitiesInit(TGalaxy* galaxy)
 {
     Galaxy = galaxy;
     Player = (TPlayer*)Galaxy->rangers->items[Galaxy->player_index];
