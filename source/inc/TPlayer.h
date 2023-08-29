@@ -9,36 +9,45 @@ struct TPlayer: TRanger {
     _gap _561;
     _gap _562;
     _gap _563;
+
     int _564;
     int _568;
+
     _gap _56C;
     _gap _56D;
     _gap _56E;
     _gap _56F;
+
     _gap _570;
     _gap _571;
     _gap _572;
     _gap _573;
+
     _gap _574;
     _gap _575;
     _gap _576;
     _gap _577;
+
     _gap _578;
     _gap _579;
     _gap _57A;
     _gap _57B;
+
     _gap _57C;
     _gap _57D;
     _gap _57E;
     _gap _57F;
+
     _gap _580;
     _gap _581;
     _gap _582;
     _gap _583;
+
     _gap _584;
     _gap _585;
     _gap _586;
     _gap _587;
+    
     _gap _588;
     _gap _589;
     _gap _58A;

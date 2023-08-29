@@ -41,43 +41,59 @@ struct TPlanet
     TStar* star;
     _gap_32 _1C;
     _pair_double polar_pos;
+    
     _gap _030;
     _gap _031;
     _gap _032;
     _gap _033;
+
     _gap _034;
     _gap _035;
     _gap _036;
     _gap _037;
+
     int radius;
+
     _gap _03C[4];
+
     double angle_speed;
+
     byte invention_levels[20];
+
     byte cur_invention;
     _gap _05D;
     _gap _05E;
     _gap _05F;
+
     float cur_invention_points;
+
     _gap _064;
     _gap _065;
     _gap _066;
     _gap _067;
+
     int population;
+
     byte eco;
     _gap _06D;
     _gap _06E;
     _gap _06F;
+
     _gap _070;
     _gap _071;
     _gap _072;
     _gap _073;
+
     byte owner;
     byte owner_faction; // 1 - coals
     byte race;
     byte gov;
+
     TGoodsShopItem goods[8];
+
     _gap_32 _0F8;
     _gap_32 _0FC;
+
     _gap _100;
     _gap _101;
     _gap _102;
@@ -92,6 +108,7 @@ struct TPlanet
     _gap _109;
     _gap _10A;
     _gap _10B;
+
     TList* relation_to_rangers;
     TList* equipment_store_items;
     TList* warriors;
@@ -104,6 +121,7 @@ struct TPlanet
     int land_researched;
     int mountains_total;
     int mountains_researched;
+
     byte orbit_cnt;
     bool is_visited;
     _gap _143[2];
@@ -114,6 +132,7 @@ struct TPlanet
     WSTR graph_name;
     _gap_32 _158;
     _gap_32 _15C;
+
     _gap _160;
     _gap _161;
     _gap _162;

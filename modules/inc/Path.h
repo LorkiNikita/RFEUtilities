@@ -9,7 +9,7 @@ namespace Path
 {
     extern wstring utilitiesdir;
     extern wstring modspath;
-    extern wstring system_folder;
+    extern wstring documents_folder;
     extern wstring log_path;
     
     void InitUtilitiesPath(HMODULE hModule);

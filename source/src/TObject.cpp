@@ -43,9 +43,11 @@ namespace TObjectM {
     {
         int objType = TObjectM::ObjectType(obj);
         wstring customFaction;
+        
         byte owner;
         byte type;
         byte race;
+
         TShip* ship;
         TItem* item;
         TPlanet* planet;

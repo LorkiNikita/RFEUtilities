@@ -1,5 +1,6 @@
 #pragma once
 #include "../../helpers/inc/exports.h"
+#include "../../modules/inc/Logger.h"
 #include "../inc/VMT.h"
 #include "../inc/TItem.h"
 
@@ -64,7 +65,15 @@ namespace TItemM
         if(TEquipmentM::IsEquipment(item))
         {
             TEquipment* equipment = TEquipmentM::AsEquipment(item);
-            return equipment->custom_faction;
+            if(equipment->custom_faction != nullptr)
+            {
+                return equipment->custom_faction;
+            }
+            else 
+            {
+                return L"";
+            }
+           
         }
         else
         {

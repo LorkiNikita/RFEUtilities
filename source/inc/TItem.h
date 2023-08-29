@@ -21,29 +21,38 @@ struct TItem
     VMT cls;
 
     UNK _04; // появляется в космосе
+
     int id;
+
     byte item_type;
     _gap _0D;
     _gap _0E;
     _gap _0F;
+
     _pair_float pos;
     int size;
+
     byte race;
     _gap _1D;
     _gap _1E;
     _gap _1F;
 
     int cost;
+
     _gap_32 _24; // связь со скриптовыми предметами?
+
     _gap _28;
     _gap _29;
     _gap _2A;
     _gap _2B;
+
     PTR script_item;
+
     _gap _30;
     _gap _31;
     _gap _32;
     _gap _33;
+
     byte no_drop;
     _gap _35;
     _gap _36;
@@ -55,6 +64,7 @@ struct TGoods: TItem {
     _gap _39;
     _gap _3A;
     _gap _3B;
+
     byte natural;
     _gap _3D;
     _gap _3E;
@@ -62,8 +72,8 @@ struct TGoods: TItem {
 };
 
 struct TEquipment: TItem {
-    WSTR sys_name;
-    WSTR custom_faction;
+    wchar_t* sys_name;
+    wchar_t* custom_faction;
     double duration;
     bool broken;
     bool explotable;
@@ -78,8 +88,8 @@ struct TEquipment: TItem {
                                 ///< (дальность, скорость и т.д.), но по факту оно
                                 ///< здесь бесполезно, т.к. перед наложением
                                 ///< улучшения оно всё равно реролится кодом
-    _gap _empty3;
-    _gap _empty4;
+    empty8 _empty3;
+    empty8 _empty4;
 };
 struct THull: TEquipment {
     int hitpoints;

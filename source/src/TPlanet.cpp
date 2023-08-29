@@ -1,4 +1,5 @@
 #pragma once
+#include "../../modules/inc/Logger.h"
 #include "../inc/TStar.h"
 #include "../inc/TPlanet.h"
 
@@ -15,12 +16,10 @@ namespace TPlanetM
         byte owner = planet->owner;
         byte race = planet->race;
         byte subOwner = planet->star->series;
-
-        if(TPlanetM::PlanetCustomFaction(planet) != L"")
+        if(TPlanetM::PlanetCustomFaction(planet) != nullptr)
         {
             return TPlanetM::PlanetCustomFaction(planet);
         }
-
         switch (owner)
         {
             case Kling:
@@ -36,23 +35,7 @@ namespace TPlanetM
                         return L"Kling";
                 }
                 break;
-            case PirateClan:
-                switch (race)
-                {
-                    case Maloc:
-                        return L"PirateMaloc";
-                    case Peleng:
-                        return L"PiratePeleng";
-                    case People:
-                        return L"PiratePeople";
-                    case Fei:
-                        return L"PirateFei";
-                    case Gaal:
-                        return L"PirateGaal";
-                    default:
-                        return L"Pirate";
-                }
-                return L"Pirate";
+            
             case Maloc:
                 return L"Maloc";
             case Peleng:
@@ -65,7 +48,8 @@ namespace TPlanetM
                 return L"Gaal";
             case None:
                 return L"None";
-            
+            case PirateClan:
+                return L"Pirate";
             default:
                 return L"Empty";
         }

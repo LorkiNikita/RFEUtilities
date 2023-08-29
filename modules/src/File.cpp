@@ -23,7 +23,7 @@ namespace File {
     )
     {
         wstring cur_line;
-        wstring path = Path::system_folder;
+        wstring path = Path::documents_folder;
         path += L"\\" + *txt_path; 
         wifstream file(path, ios::in);  
         if (file)
@@ -52,7 +52,7 @@ namespace File {
         )
     {
         wstring cur_line;
-        wstring path = Path::system_folder + txt_path;
+        wstring path = Path::documents_folder + txt_path;
 
         wifstream file(path, ios::in);
 
@@ -81,14 +81,14 @@ namespace File {
     }
 
     wchar_t* SetParFromFile(
-            wchar_t* txt_path,
-            wchar_t* param_name,
-            wchar_t* value
-        )
+        wchar_t* txt_path,
+        wchar_t* param_name,
+        wchar_t* value
+    )
     {
         wstring cur_line;
         wstring add_line;
-        wstring path = Path::system_folder;
+        wstring path = Path::documents_folder;
         path += L"\\" + *txt_path;
 
         wifstream file(path, ios::in);

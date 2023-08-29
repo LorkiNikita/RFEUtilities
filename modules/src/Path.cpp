@@ -1,10 +1,13 @@
 #include "../inc/Path.h"
+#include <iostream>
+#include <string>
+#include <fstream>
 
 namespace Path 
 {
     wstring utilitiesdir = L"";
     wstring modspath = L"";
-    wstring system_folder = L"";
+    wstring documents_folder = L"";
     wstring log_path = L"";
 
     void InitUtilitiesPath(HMODULE hModule)
@@ -27,10 +30,10 @@ namespace Path
     {
         WCHAR user_documents_path[MAX_PATH];
         SHGetSpecialFolderPathW(0, user_documents_path, CSIDL_PERSONAL, true);
-        system_folder = user_documents_path;
+        documents_folder = user_documents_path;
     }
     void InitLogPath() 
     {
-        log_path = system_folder + L"SpaceRangersHD/########.log";
+        log_path = documents_folder + L"/SpaceRangersHD/########.log";
     }
 }
